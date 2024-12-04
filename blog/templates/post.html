@@ -1,0 +1,12 @@
+{% extends 'single-template.html' %}
+{% block title %} MyBlog: {{ post.title }} {% endblock %}
+
+{% block entry %}
+  <a href="/">Back to previous page</a><br /><br />
+
+  <h2>{{ post.title }}</h2>
+
+  <div>
+    {{ post.content | linebreaks }}
+  </div>
+{% endblock %}

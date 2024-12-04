@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+    <div class="blurred-box">
+    <!-- Login form -->
+        <form class="login-form">
+          <h2>Login</h2>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required>
+
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required>
+
+          <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <div class="image-container">
+        <img src="{% static 'img/back_3.png' %}" class="img-fluid" alt="Your Image" />
+    </div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="thin">Recent posts</h1>
+            </div>
+
+            <!-- 'paranthesis & percent' is used in django like 'dollar' in web.py to enable python code in HTML-->
+            {% for post in posts %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-header" style="background:url({{ post.image.url }})">
+                            <h3 class="post-title"><a class="post_title_2" href="/post/{{ post.slug }}">{{ post.title }}</a></h3>
+                        </div>
+
+                        <p>{{ post.summary }}</p>
+
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+{% endblock %}

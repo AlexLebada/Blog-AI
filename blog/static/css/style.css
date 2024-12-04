@@ -1,0 +1,70 @@
+body {
+    /* background: #FFFFFF ; */
+}
+
+    * {
+        /* outline: 1px solid rgba(0, 0, 255, 0.5); */
+    }
+
+.card-header{
+    height: 200px;
+}
+
+.image-container {
+    text-align: center; /* Centers the image horizontally */
+    margin-top: 20px;   /* Adds some space above the image */
+}
+
+.image-container img {
+    width: 100%;        /* Makes the image fill the container's width */
+    max-width: 2000px;  /* Limits the image size */
+    height: 500px;       /* Keeps the aspect ratio intact */
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.blurred-box {
+    position: absolute;
+    top: 100px; /* Adjust top position to add space above the image */
+    left: 80%;
+    transform: translateX(-50%); /* Center the blurred box */
+    width: 20%; /* Adjust width to fit your layout */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7); /* Light background with opacity */
+    backdrop-filter: blur(1px); /* The blur effect on the background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow around the box */
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.login-form input {
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.login-form button {
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-form button:hover {
+    background-color: #0056b3;
+}
+
+.post_title_2{
+    color:white;
+}
+
+.card-header{
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3) !important;
+}
