@@ -27,12 +27,16 @@ SECRET_KEY = 'django-insecure-ogi!n*+y%e1nq_y#=b01itt6++!x*x@-1g8-3qzs1!7d7azh(-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['rnkjb-2a02-2f04-a000-b200-2802-10e2-37e7-c8cd.a.free.pinggy.link',
+                 'localhost']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'django_light',
+    'admin_tools_stats',
+    'django_nvd3',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,7 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'bootstrap3'
+    'bootstrap3',
+    # this is for ensuring django loads sepcific configuration class of app, instead of register
+    'register.apps.RegisterConfig',
+    'crispy_forms',
+    'crispy_bootstrap4',
+    'crispy_bootstrap3',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +67,10 @@ ROOT_URLCONF = 'Blog_2.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / "blog/templates",
+            BASE_DIR / "register/templates",
+            ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,6 +131,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
+CRISPY_TEMPLATE_PACK = 'boostrap3'
+
 STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 # allows media files into creation of posts
@@ -129,3 +143,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'blog', 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": "D:\ML_to_be\projects\Blog_2\cache",
+    }
+}

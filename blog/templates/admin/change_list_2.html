@@ -1,0 +1,16 @@
+{% extends 'admin/change_list.html' %}
+
+{% block content %}
+  <div class="graph-container">
+    <h2>Category Graph</h2>
+    <!-- Display the chart -->
+    <div class="graph">
+      <p>This chart shows the distribution of posts by category:</p>
+      <div>
+        {{ chart|safe }}
+      </div>
+    </div>
+  </div>
+  <!-- Render the usual change list content -->
+  {{ block.super }}
+{% endblock %}

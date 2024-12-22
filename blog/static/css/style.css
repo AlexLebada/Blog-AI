@@ -68,3 +68,11 @@ body {
 .card-header{
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3) !important;
 }
+
+.fixed-width-textarea {
+    width: 500px; /* Set the desired fixed width */
+}
+
+.chatbot{
+    width:30%;
+}

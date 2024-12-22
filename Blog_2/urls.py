@@ -17,14 +17,19 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import path, re_path
+from django.urls import path, re_path, include
 from blog import views as blog_views
+from register import views as register_views
 
 urlpatterns = [
     #re_path(r'^post/(.*)$', blog_views.post), #using regex pattern
     path('post/<slug:slug>/', blog_views.post), #without regex
     path('about/', blog_views.about),
     path('', blog_views.index),
+    path('profile/', blog_views.profile, name='profile'),
     path('admin/', admin.site.urls),
+    path('admin_tools_stats/', include('admin_tools_stats.urls')),
+    path('register/', include('register.urls')),
+    path('chatbot/', blog_views.chatbot_view, name='chatbot'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+        <div class="chatbot">
+            <a href="/">Back to previous page</a><br /><br />
+            <h1>Posts by Users</h1>
+            <!-- Render the chart -->
+            <img src="data:image/png;base64,{{ chart }}" alt="User Post Chart">
+        </div>
+
+
+        <div class="chatbot">
+
+            <form method="POST" class="form">
+                <h2>Chatbot</h2>
+                {% csrf_token %}
+                <div id="display-text" class="form-control" style="width: 500px; height: 200px; background-color: #f8f9fa; border: 1px solid #ced4da; overflow-y: auto; padding: 10px; margin-bottom: 15px;">
+                    {% for input in recent_inputs %}
+                        <p>{{ input.text }}</p>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="largeTextInput">Enter your text:</label>
+                    <textarea id="largeTextInput" name="large_text" class=" form-control" rows="5" style="width: 500px; resize: vertical;" required></textarea>
+                </div>
+                <div class="d-flex justify-content-between mt-3">
+                    <button type="submit" name="action" value="save" class="btn btn-primary">Save</button>
+                    <button type="submit" name="action" value="clear" class="btn btn-danger">Clear</button>
+                </div>
+            </form>
+        </div>
+
+{% endblock %}
