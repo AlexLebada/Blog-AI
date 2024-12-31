@@ -10,7 +10,9 @@
 
 ## Backend description
 
-* url.py
+* ### Project urls
+  
+    */Blog_2/url.py:*
 
        urlpatterns = [
         #re_path(r'^post/(.*)$', blog_views.post), #using regex pattern
@@ -31,3 +33,32 @@
         path('login/', LoginView.as_view(template_name='./registration/login.html'), name='login'),
         path('upload-file/', blog_views.upload_file, name='upload_file'),
       ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+## Frontend description
+
+* ### User panel
+ Because I want to make custom POST requests without *user_panel.html* page refresh, im using Fetch API when DOM loaded. For example, here Im making the request for post submission
+
+   */Blog_2/blog/static/css/chatbot.js:*
+
+           document.addEventListener('DOMContentLoaded', function() {
+           ...
+              postForm.addEventListener('submit', function (event) {
+              event.preventDefault(); // Prevent page reload
+      
+              const formData = new FormData(postForm); // Collect form data including the file
+              formData.append('submit_post', 'true')
+              const csrfToken = getCSRFToken();
+      
+              fetch('/writer_panel/', {
+                  method: 'POST',
+                  headers: {
+                      'X-CSRFToken': csrfToken, // Include CSRF token
+                  },
+                  body: formData,
+              })
+                  .then(response => response.json())
+                  ...
+              })
+           })
