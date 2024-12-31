@@ -1,0 +1,177 @@
+* {
+         /* outline: 1px solid rgba(0, 0, 255, 0.5); */
+    }
+
+/* Main grid layout */
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr; /* 3 columns: left, middle, right */
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Left Section */
+.left-section {
+    grid-column: 1; /* First column */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Middle Section */
+.middle-section {
+    grid-column: 2; /* Middle column */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+
+/* Post creation */
+#post-creation {
+    margin-top: 20px;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+/* Right Section */
+.right-section {
+    grid-column: 3; /* Last column */
+}
+
+.container_posts {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+
+
+/* For CHATBOT */
+
+
+.chatbot {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    gap: 20px;
+}
+
+#chatbot-container {
+
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+#chatlog {
+    height: 200px;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+#chatlog p {
+    margin: 0;
+}
+
+#chat-form {
+    display: flex;
+    margin-top: 10px;
+}
+
+#query {
+    flex-grow: 1;
+    margin-right: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+#chatbot-container button {
+    width: 70px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+#chatbot-container button:hover {
+    background-color: #0062cc;
+}
+
+/* Options and Chatbot containers */
+#options-container {
+    display: flex;
+    background-color: #f5f5f5;
+     border: 1px solid #ddd;
+    flex-direction: column;
+    gap: 20px; /* Space between the header and options row */
+}
+
+#options-row {
+    height: 150px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; /* Vertically align items */
+}
+
+#tokens {
+    flex-shrink: 0; /* Prevent tokens from shrinking */
+    padding: 10px;
+    border-radius: 4px;
+
+}
+
+#options-form{
+    width:100%;
+    display: flex;  /* Use flexbox for horizontal alignment */
+    flex-direction: column
+    gap: 20px; /* Space between the radio buttons */
+    flex-wrap: wrap; /* Allow wrapping if needed */
+    height: 150px; /* Set a fixed height */
+    align-items: flex-start; /* Align radio buttons to the top */
+}
+
+#radio-buttons-container {
+    display: flex;
+    padding:5px;
+    gap: 20px; /* Space only between radio buttons */
+}
+
+#file-upload-container {
+     display: flex; /* Flexbox for horizontal alignment */
+    width: 85%; /* This makes it take the full width of the parent */
+    justify-content: space-between; /* Distribute space between the left and right sections */
+}
+
+
+.django-ckeditor-widget{
+    width: 750px !important;
+}
+
+.django-ckeditor-widget textarea {
+    width: 100%;        /* Make textarea take the full width of the div */
+    resize: vertical;
+}
+
+.file-upload-left,
+.file-upload-right {
+    gap:5px;
+    display: flex;
+    flex-direction: column; /* Stack the elements vertically within each side */
+    width: 48%; /* Make each part take up nearly half of the container's width */
+}
+}
+
+
+
+

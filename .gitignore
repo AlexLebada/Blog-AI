@@ -1,0 +1,15 @@
+# Virtual environment directories
+venv/
+for_github/
+env/
+.venv/
+env.bak/
+.env
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+CONNECTIONS_KEYS.py
+description.docx

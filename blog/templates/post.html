@@ -5,8 +5,9 @@
   <a href="/">Back to previous page</a><br /><br />
 
   <h2>{{ post.title }}</h2>
-
+  <div><i>Date: {{ post.created }}  </i><i>(Created by:</i> {{ post.writer.pseudo_name }}) </div>
   <div>
-    {{ post.content | linebreaks }}
+    <br>
+    {{ post.content | safe }}
   </div>
 {% endblock %}

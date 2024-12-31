@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="link-container">
+        <div class="link-item">
+            <img src="media/top-section-bg.jpeg" alt="Image 1" class="link-image">
+            <a href="voting/">Vote your favorite content creator</a>
+        </div>
+
+        <div class="link-item">
+            <img src="media/top-section-bg.jpeg" alt="Image 2" class="link-image">
+            <a href="all_posts/">View content</a>
+        </div>
+        <div class="link-item">
+            <img src="media/top-section-bg.jpeg" alt="Image 3" class="link-image">
+            <a href="/">More</a>
+        </div>
+    </div>
+
+{% endblock %}

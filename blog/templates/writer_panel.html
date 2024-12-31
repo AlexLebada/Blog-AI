@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/chatbot.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="main-container">
+    <!-- Left Section -->
+    <div class="left-section">
+        <div class="container_img">
+            <img src="data:image/png;base64,{{ chart }}" alt="User Post Chart">
+        </div>
+    </div>
+
+    <!-- Middle Section -->
+    <div class="middle-section">
+        <div class="chatbot">
+            <div id="chatbot-container">
+                <div id="options-container">
+                    <div id="options-row">
+                        <div id="tokens">
+                            Tokens used: {{ writer.tokens_used }}<br>
+                            Tokens available: {{ writer.tokens_available }}<br>
+                            <h2>Your AI assistant</h2>
+                        </div>
+
+                        <form id="options-form">
+                            {% csrf_token %}
+                            <div id="radio-buttons-container">
+                                <label>
+                                    <input type="radio" name="option" value="option1" required checked> Chatbot
+                                </label><br>
+                                <label>
+                                    <input type="radio" name="option" value="option2" required> Answer based context
+                                </label><br>
+                                <label>
+                                    <input type="radio" name="option" value="option3" required> Summarization
+                                </label><br><br>
+                            </div>
+                            <div id="file-upload-container" style="display: none;">
+                                <div class="file-upload-left">
+                                    <label for="file-upload">Upload a file:</label>
+                                    <input type="file" id="file-upload" name="file">
+                                    <button type="button" id="file-submit" value="">Process</button><br><br>
+                                </div>
+                                <div class="file-upload-right">
+                                    <label for="file-dropdown">Choose a file:</label>
+                                    <select id="file-dropdown" name="selected_file">
+                                        <option value="" disabled selected>Select a file</option>
+                                        {% for file_name in file_names %}
+                                            <option value="{{ file_name }}">{{ file_name }}</option>
+                                        {% endfor %}
+                                    </select><br>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+                <div id="chatlog"></div>
+                <form id="chat-form">
+                    <input type="text" id="query" placeholder="Say something...">
+                    <button type="submit">Send</button>
+                </form>
+            </div>
+        </div>
+        <div id="post-creation">
+            <h2>Create a Post</h2>
+            <form id="post-form" enctype="multipart/form-data" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" name="submit_post">Create Post</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right-section">
+        <div class="container_posts">
+            <div class="col-md-3-2">
+                {% for post in posts %}
+                    <div>
+                        <div class="summary-title"><a href="/post/{{ post.slug }}">{{ post.title }}</a></div>
+                        <div class="truncate-text">{{ post.summary }}</div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

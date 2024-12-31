@@ -1,5 +1,10 @@
 <!-- This is sidebar -->
 {% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/posts.css' %}">
+{% endblock %}
 
 {% block content %}
     <div class="container">
@@ -7,7 +12,13 @@
             {% for post in posts %}
                 <div>
                     <div class="summary-title"><a href="/post/{{ post.slug }}">{{ post.title }}</a></div>
-                    <div class="summary">{{ post.summary }}</div>
+                    <div class="truncate-text" style="display: -webkit-box !important;
+                                                        -webkit-line-clamp: 3 !important;
+                                                        -webkit-box-orient: vertical !important;
+                                                        overflow: hidden !important;
+                                                        text-overflow: ellipsis !important;
+                                                        height: 60px !important;
+                                                        line-height: 20px !important;">{{ post.summary }}</div>
                 </div>
             {% endfor %}
         </div>

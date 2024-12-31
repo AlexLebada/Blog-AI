@@ -9,12 +9,16 @@ import base64
 
 
 class Writer(models.Model):
-    #user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     #user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="writer")
-    name = models.CharField(max_length=200)
+    pseudo_name = models.CharField(max_length=200)
+    all_posts = models.PositiveIntegerField(null=True, blank=True)
+    votes = models.PositiveIntegerField(null=True,blank=True)
+    tokens_used = models.PositiveIntegerField(null=True)
+    tokens_available = models.PositiveIntegerField(null=True)
     createdDate = models.DateTimeField(auto_now_add=True)
     def __str__(self):
-        return u'%s' % (self.name)
+        return u'%s' % (self.user)
 
 
 class Article(models.Model):
@@ -25,26 +29,3 @@ class Article(models.Model):
     def __str__(self):
         return u'[%s] : %s' % (self.refWriter,self.text_title)
 
-
-
-def generate_chart():
-    # Sample data
-    labels = ['Technology', 'Lifestyle', 'Education', 'News']
-    values = [10, 15, 7, 5]
-
-    # Create the figure
-    fig, ax = plt.subplots()
-    ax.bar(labels, values)
-    ax.set_title('Posts by Category')
-    ax.set_xlabel('Category')
-    ax.set_ylabel('Number of Posts')
-
-    # Save the figure to a bytes buffer
-    buf = io.BytesIO()
-    plt.savefig(buf, format='png')
-    buf.seek(0)
-
-    # Encode the bytes as base64 for rendering in HTML
-    graph = base64.b64encode(buf.getvalue()).decode('utf-8')
-    buf.close()
-    return graph

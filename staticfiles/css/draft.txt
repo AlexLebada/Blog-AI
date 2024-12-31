@@ -1,0 +1,40 @@
+SelectionContainer.addEventListener('change', function (event) {
+        // Check if a radio button was clicked
+        if (event.target.name === 'selected_file') {
+            const selectedValue = event.target.value; // Get the selected value
+
+            // Prepare the CSRF token (for Django)
+            const csrfToken = getCSRFToken();
+
+            // Make the POST request
+            fetch('/upload-file/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    'X-CSRFToken': csrfToken // Include CSRF token in the headers
+                },
+                body: `selected_option=${encodeURIComponent(selectedValue)}&submit_file=true`
+            })
+                .then(response => {
+                     // Check if the response is JSON (not HTML)
+                     if (response.ok) {
+                         return response.json();
+                     } else {
+                         return response.text().then(text => {
+                             throw new Error('Server responded with non-JSON content: ' + text);
+                         });
+                     }
+                 })
+                .then(data => {
+                    if (data.message) {
+                         console.log(data.message); // Show success message
+                         fileSubmitButton.value = ""
+                    } else if (data.error) {
+                         console.error('Error: ' + data.error); // Handle errors
+                    }
+                })
+                .catch(error => {
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+    });

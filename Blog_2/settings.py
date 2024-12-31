@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
+from CONNECTIONS_KEYS import MONGO_DB_KEY, MONGO_DB_PASS, MONGO_DB_USER, DJANGO_PROD_KEY
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-ogi!n*+y%e1nq_y#=b01itt6++!x*x@-1g8-3qzs1!7d7azh(-'
+SECRET_KEY = DJANGO_PROD_KEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -50,6 +51,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap4',
     'crispy_bootstrap3',
+    'room',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -93,7 +96,33 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    },
+}
+
+MONGO_CLIENT = {
+    'HOST': MONGO_DB_KEY,         # MongoDB host
+    'PORT': 27017,               # MongoDB port
+    'USERNAME': MONGO_DB_USER,              # MongoDB username (if required)
+    'PASSWORD': MONGO_DB_PASS,              # MongoDB password (if required)
+    'DB_NAME': 'LLM_work',  # Your MongoDB database name
+}
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': '70%',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript'],
+            ['TextColor', 'BGColor'],
+            ['JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent'],
+            ['Link', 'Unlink', 'Anchor'],
+            ['Undo', 'Redo'],
+            ['Source'],
+        ],
+    },
 }
 
 
@@ -131,11 +160,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-CRISPY_TEMPLATE_PACK = 'boostrap3'
+CRISPY_TEMPLATE_PACK = 'boostrap4'
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
 MEDIA_URL = '/media/'
-# allows media files into creation of posts
+
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
+# AL.: allows media files into creation of posts
 MEDIA_ROOT = os.path.join(BASE_DIR, 'blog', 'media')
 
 # Default primary key field type

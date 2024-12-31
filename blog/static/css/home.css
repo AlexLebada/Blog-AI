@@ -1,0 +1,36 @@
+/* Style the link container to display items horizontally */
+.link-container {
+    display: flex;
+    justify-content: center; /* Centers the items horizontally */
+    align-items: center; /* Centers the items vertically */
+    gap: 20px; /* Space between each link-item */
+    padding: 20px; /* Optional padding */
+}
+
+/* Style each link item */
+.link-item {
+    text-align: center; /* Centers the image and link within each item */
+}
+
+/* Style the images above the links */
+.link-image {
+    width: 250px; /* Adjust the size of the image */
+    height: 250px; /* Adjust the size of the image */
+    object-fit: contain; /* Ensures the image is scaled proportionally */
+    margin-bottom: 10px; /* Adds some space between the image and the link */
+}
+
+/* Style the links */
+.link-container a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #007bff;
+    display: block;
+}
+
+/* Add hover effect on links */
+.link-container a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+

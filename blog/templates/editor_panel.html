@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    {% if not is_reader %}
+    <div class="container">
+            <div class="col-md-3">
+                {% for post in posts %}
+                    <div>
+                        <div class="summary-title"><a href="/post/{{ post.slug }}">{{ post.title }}</a></div>
+                        <div class="summary">Description: {{ post.summary }}</div>
+                         <select id="status" name="status">
+                            <option value="">-- Select Status --</option>
+                                    {{ post.status }}
+                        </select>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+            <p>You do not have access here.</p>
+    {% endif %}
+{% endblock %}

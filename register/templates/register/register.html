@@ -8,8 +8,11 @@
 <div class="blurred-box">
     <form method="POST" class="form-group">
          {% csrf_token %}
-        {{ form|crispy:"bootstrap3" }}
+        {{ form|crispy:"bootstrap4" }}
         <button type="submit" class="btn btn-succes">Register</button>
     </form>
+</div>
+<div class="image-container">
+	<img src="{% static 'img/back_3.png' %}" class="img-fluid" alt="Your Image" />
 </div>
 {% endblock %}
