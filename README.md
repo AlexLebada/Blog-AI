@@ -1,16 +1,28 @@
 ## Project description
- This is a blog application with AI tools like:
-- Chatbot: for general q's
-- Answer based context: where creators can enhance their work by getting specific answers from chatbot with provided external data
-- Summarization: Extract main ideas of a content ( in progress )
+ This is a blog application with the following functionalities:
+ 
+ **1. ML tools**
+-	Chatbot: for general q's
+-	Answer based context: where creators can enhance their work by getting specific answers from chatbot with provided external data
+-	Summarization: Extract main ideas of a content *(in progress)*
 
+ **2. Login/logout**
+ 
+ **3. User/Content management**
+ - User groups: writers, readers, editors, admins (for admin panel)
+ - Posts are displayed based on editor approval, while only writers can create them
+ - Readers can only vote
 
-![Screenshot 2024-12-31 142218](https://github.com/user-attachments/assets/b24f68bf-b985-4f21-919f-68f9f475bd52)
-
+ **4. Common chatbot interface for ML tools:** using javascript
+    
+ **5. Reward/token system:** as each usage of API endpoints of ML tools has a cost *(in progress)*
+    
+ **6. Storing data:** vector embeddings using Mongodb Atlas
+<br>
 
 ## Backend description
 
-* ### Project urls
+* **Project urls**
   
     */Blog_2/url.py:*
 
@@ -34,11 +46,32 @@
         path('upload-file/', blog_views.upload_file, name='upload_file'),
       ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+ * **Apps structure**
+   - blog: handles user interaction with app for content creation
+   - register: user creation
+   - room: interaction between users
 
+  * **Models:** Post, InputChatbot, UploadedFile, Photo, Writer
+  * **Forms:** RegisterForm
+  * **Views**
+    - Writer_panel: Renders user panel for writers group. Here it process two different POST requests: for chatbot user input and return answer. Second is for post creation, using its defined form
+    - Editor_panel: The endpoint where the editors group have access to give approval for posting content
+    - Upload_file: I'm using a global variable to deny concurrent requests while previous request is processing the file for storage its content and corresponding embedding vectors
+  * **Utility files:** in utils.py where are my functions for storing/fetching into/from MongoDB. Also here is my pipeline for chatbot and interaction with 3rd party API for ML models
+
+<br>      
 ## Frontend description
+<br>
 
-* ### User panel
- Because I want to make custom POST requests without *user_panel.html* page refresh, im using Fetch API when DOM loaded. For example, here Im making the request for post submission
+![Screenshot 2024-12-31 142218](https://github.com/user-attachments/assets/b24f68bf-b985-4f21-919f-68f9f475bd52)
+
+* ### Templates
+  <img src="https://github.com/user-attachments/assets/8490b564-3bfa-4feb-b84f-e7fe17b4b167" width="800" height="250">
+
+
+  - User panel
+
+   Because I want to make custom POST requests without *writer_panel.html* page refresh, im using Fetch API when DOM loaded. For example, here Im making the request for post submission
 
    */Blog_2/blog/static/css/chatbot.js:*
 
@@ -62,3 +95,6 @@
                   ...
               })
            })
+
+
+
