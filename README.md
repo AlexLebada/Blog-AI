@@ -52,15 +52,18 @@
    - room: interaction between users
 
   * **Models:** Post, InputChatbot, UploadedFile, Photo, Writer
-  * **Forms:** RegisterForm
+  * **Forms:** RegisterForm, ChatbotForm, PostForm
   * **Views**
     - Writer_panel: Renders user panel for writers group. Here it process two different POST requests: for chatbot user input and return answer. Second is for post creation, using its defined form
     - Editor_panel: The endpoint where the editors group have access to give approval for posting content
     - Upload_file: I'm using a global variable to deny concurrent requests while previous request is processing the file for storage its content and corresponding embedding vectors
+    - etc.
   * **Utility files:** in utils.py where are my functions for storing/fetching into/from MongoDB. Also here is my pipeline for chatbot and interaction with 3rd party API for ML models
 
-<br>      
-## Frontend description
+<br> 
+
+ ## Frontend description
+
 <br>
 
 ![Screenshot 2024-12-31 142218](https://github.com/user-attachments/assets/b24f68bf-b985-4f21-919f-68f9f475bd52)
@@ -69,7 +72,7 @@
   <img src="https://github.com/user-attachments/assets/8490b564-3bfa-4feb-b84f-e7fe17b4b167" width="800" height="250">
 
 
-  - User panel
+  - **User panel**
 
    Because I want to make custom POST requests without *writer_panel.html* page refresh, im using Fetch API when DOM loaded. For example, here Im making the request for post submission
 
